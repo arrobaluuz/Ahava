@@ -1,0 +1,90 @@
+
+<div class="row">
+  <h1 class="title">Ahava</h1>
+</div>
+
+<div class="row">
+  <form (ngSubmit)="onRegister()" #myForm="ngForm">
+    <span>
+      <input  class="slide-up" id="name" name="name" type="text" required [(ngModel)] = "register.name"  placeholder="Teclea tu nombre" >
+      <label for="card">Nombre</label>
+    </span>
+    <span>
+      <input class="slide-up" id="email" name="email" type="email" required [(ngModel)] = "register.email" placeholder="Teclea tu email" >
+      <label for="expires">Email</label>
+    </span>
+    <span>
+      <input class="slide-up" id="password" name="password" type="password" required [(ngModel)] = "register.password" placeholder="********">
+      <label for="security">Password</label>
+    </span>
+    <button [disabled]="myForm.invalid" type="submit" >
+      Registrar
+    </button>
+    <button type="button">
+      Accion
+    </button>
+
+
+  </form>
+</div>
+
+<hr>
+<h1>NgClass y NgStyle</h1>
+<input type="text" required #nameInput4="ngModel" [(ngModel)] = "person.name">
+<hr class="line-error" [ngClass]="{
+  'valid': nameInput4.valid,
+  'invalid': nameInput4.invalid
+}">
+<p class="message-error" [class.invalid]="nameInput4.invalid">El campo es requerido</p>
+
+<div class="images">
+  <div>
+    <input type="number" [(ngModel)] = "box.width">
+    <input type="number" [(ngModel)] = "box.height">
+    <input type="color" [(ngModel)] = "box.background">
+  </div>
+  <div>
+    <div [ngStyle]="{
+      'width.px': box.width,
+      'height.px':box.height,
+      'background-color': box.background,
+      'display':'block'
+    }"></div>
+  </div>
+</div>
+
+<hr >
+<h1>Class & Style</h1>
+<input type="text" required #nameInput2="ngModel" [(ngModel)] = "person.name">
+<p class="message-error" [class.invalid]="nameInput2.invalid">El campo es requerido</p>
+<label>Nombre</label>
+<input type="text" required #nameInput3="ngModel" [(ngModel)] = "person.name">
+<p [style.font-style]="nameInput3.invalid ? 'italic' : 'normal'">Texto texto texto</p>
+<div class="images">
+  <div>
+    <input type="text" [(ngModel)] = "widthImg">
+  </div>
+  <div>
+    <img [style.width.%]="widthImg" [src]="person.avatar" alt="image">
+  </div>
+</div>
+<hr>
+<h1>*ngSwitch</h1>
+<input type="text" required [(ngModel)] = "person.name">
+
+<div [ngSwitch]="person.name">
+  <p *ngSwitchCase="'Nicolas'">La persona es Nicolas</p>
+  <p *ngSwitchCase="'Julian'">La persona es Julian</p>
+  <p *ngSwitchCase="'Camila'">La persona es Camila</p>
+  <p *ngSwitchDefault>No hace match</p>
+</div>
+
+<hr>
+<h1>*ngFor Objects</h1>
+<div class="products--grid">
+  <div *ngFor="let item of products">
+    <img [src]="item.image" alt="image">
+    <h2>{{ item.name }}</h2>
+    <p>{{ item.price }}</p>
+  </div>
+</div>
